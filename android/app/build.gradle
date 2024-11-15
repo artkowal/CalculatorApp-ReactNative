@@ -111,9 +111,18 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
+    implementation project(':react-native-splash-screen')
+
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
     }
+}
+
+configuration.all {
+    resolutionStrategy {
+        force 'android.core:core:1.9.0'
+    }
+    exclude group: 'com.android.support', module: 'support-compat'
 }
